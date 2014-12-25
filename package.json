@@ -4,16 +4,18 @@
   "description": "",
   "main": "index.html",
   "dependencies": {
-    "browserify": "^6.3.2",
     "q": "^1.1.2",
     "three": "^0.69.0",
-    "three-world": "^1.2.0",
+    "three-world": "^1.2.0"
+  },
+  "devDependencies": {
+    "autoprefixer": "^4.0.0",
+    "browserify": "^6.3.2",
     "watchify": "^2.1.1"
   },
-  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build-js": "browserify js/main.js > index.js",
+    "build": "autoprefixer -o style.css stylesheet.css & browserify js/main.js > index.js",
     "dev": "watchify js/main.js -o index.js -dv"
   },
   "author": "",
