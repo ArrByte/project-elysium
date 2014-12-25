@@ -33,7 +33,7 @@ body {
   text-align: center;
 }
 
-/* Headline */
+/* Headlines */
 
 h1 {
   text-align: center;
@@ -42,6 +42,10 @@ h1 {
   margin-top: 0;
   padding-top: 1em;
   animation: glitch 2.5s linear infinite;
+}
+
+h2 {
+  font-size: 3em;
 }
 
 @keyframes glitch {

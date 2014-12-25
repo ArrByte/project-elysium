@@ -34,6 +34,7 @@ var level = loader.load('model/test.obj', 'model/test.obj.mtl', function(mesh) {
   World.add(mesh);
   var loading = document.getElementById("loading");
   loading.parentNode.removeChild(loading);
+  document.getElementById("go").style.display = "block";
 });
 
 window.light = flashlight;
