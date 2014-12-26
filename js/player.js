@@ -1,44 +1,27 @@
-var Q = require('q'),
-    Player = (function() {
+var THREE = require('three');
 
-  // Internals
+var Player = (function(){
+  var instance = {}, flashlight;
 
-  var loader = new THREE.OBJMTLLoader(), mesh, self = {};
+  instance.init = function(cam, flashLightOpts) {
+    if(!flashLightOpts) flashLightOpts = { color: 0xffffff, intensity: 5, distance: 100 };
+    flashlight = new THREE.SpotLight(flashLightOpts.color, flashLightOpts.intensity, flashLightOpts.distance);
 
-  // External interface
+    flashlight.position.set(0, 0, 1);
+    flashlight.target = cam;
+    flashlight.castShadow = true;
+    flashlight.shadowMapWidth = 1024;
+    flashlight.shadowMapHeight = 1024;
+    flashlight.shadowCameraNear = 500;
+    flashlight.shadowCameraFar = 4000;
+    flashlight.shadowCameraFov = 30;
 
-  self.init = function() {
-    var d = Q.defer();
+    cam.add(flashlight);
 
-    THREE.Loader.Handlers.add( /\.dds$/i, new THREE.DDSLoader() );
-
-    loader.load('model3/batcave.obj', 'model3/batcave.mtl', function (object) {
-      mesh = object;
-      //mesh.rotation.set(0, Math.PI/2, 0);
-/*
-      var material = new THREE.MeshBasicMaterial({color: 0x00ff00});
-
-      mesh.traverse(function(child) {
-        if(child instanceof THREE.Mesh) {
-          child.material = material;
-        }
-      });
-      /**/
-      console.log("Loaded!");
-      window.mesh = mesh;
-      d.resolve(self);
-    }, undefined, function(error) {
-      console.error("Error loading player:", error);
-      alert("Error loading player: " + error);
-      d.reject(error);
-    });
-
-    return d.promise;
+    return cam;
   }
 
-  self.getMesh = function() { return mesh; };
-
-  return self;
+  return instance;
 })();
 
 module.exports = Player;

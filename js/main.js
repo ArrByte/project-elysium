@@ -1,6 +1,7 @@
 var THREE = require('three'),
     World = require('three-world'),
-    OBJMTLLoader = require('./OBJMTLLoader.js');
+    OBJMTLLoader = require('./OBJMTLLoader'),
+    Player = require('./player');
 
 World.init({
   renderCallback: function() {
@@ -13,23 +14,10 @@ window.world = World;
 
 var cam        = World.getCamera(),
     loader     = new OBJMTLLoader(),
-    flashlight = new THREE.SpotLight(0xffffff, 5, 100),
     started    = false;
 
 var Bed;
-
-flashlight.position.set(0, 0, 1);
-flashlight.target = cam;
-flashlight.castShadow = true;
-flashlight.shadowMapWidth = 1024;
-flashlight.shadowMapHeight = 1024;
-flashlight.shadowCameraNear = 500;
-flashlight.shadowCameraFar = 4000;
-flashlight.shadowCameraFov = 30;
-
-
-cam.add(flashlight);
-World.add(cam);
+World.add(Player.init(cam));
 
 loader.load('model2/corridor.obj', 'model2/corridor.obj.mtl', function(mesh) {
   mesh.scale.set(20, 20, 20);
