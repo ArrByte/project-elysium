@@ -7,7 +7,7 @@ World.init({
   renderCallback: function() {
     //cam.translateZ(-0.1);
   },
-  ambientLightColor: 0x000011
+  ambientLightColor: 0x00001a
 });
 
 window.world = World;

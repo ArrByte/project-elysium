@@ -37,8 +37,8 @@ function fillOneRoom(bedMesh) {
 
 var initLevel = function(world) {
   Q.all([
-    loadMesh('model2/corridor.obj', 'model2/corridor.obj.mtl', 20),
-    loadMesh('model2/interiors/bed/Hospital_Bed.obj', 'model2/interiors/bed/Hospital_Bed.mtl', 5)
+    loadMesh('level/corridor.obj', 'level/corridor.obj.mtl', 20),
+    loadMesh('interior/bed/Hospital_Bed.obj', 'interior/bed/Hospital_Bed.mtl', 5)
   ]).spread(function(level, bed) {
     // Add the level
     level.position.set(0, -20, 20);
