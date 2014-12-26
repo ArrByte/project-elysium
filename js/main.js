@@ -1,6 +1,6 @@
 var THREE = require('three'),
     World = require('three-world'),
-    OBJMTLLoader = require('./OBJMTLLoader'),
+    Level = require('./level'),
     Player = require('./player');
 
 World.init({
@@ -13,43 +13,10 @@ World.init({
 window.world = World;
 
 var cam        = World.getCamera(),
-    loader     = new OBJMTLLoader(),
     started    = false;
 
-var Bed;
 World.add(Player.init(cam));
-
-loader.load('model2/corridor.obj', 'model2/corridor.obj.mtl', function(mesh) {
-  mesh.scale.set(20, 20, 20);
-  mesh.position.set(0, -20, 20);
-  World.add(mesh);
-  var loading = document.getElementById("loading");
-  loading.parentNode.removeChild(loading);
-  document.getElementById("go").style.display = "block";
-});
-
-loader.load('model2/interiors/bed/Hospital_Bed.obj', 'model2/interiors/bed/Hospital_Bed.mtl', function(mesh) {
-  mesh.scale.set(5, 5, 5);
-  Bed = mesh;
-  window.beds = [];
-  for(var i=0;i<4;i++) {
-    var bed = Bed.clone();
-    bed.position.set(60 + i*30, -20, -65);
-
-    World.add(bed);
-    window.beds.push(bed);
-  }
-
-  for(var i=0;i<4;i++) {
-    var bed = Bed.clone();
-    bed.rotation.set(0, -Math.PI, 0);
-    bed.position.set(60 + i*30, -20, 5);
-
-    World.add(bed);
-    window.beds.push(bed);
-  }
-
-});
+Level.init(World);
 
 World.startRenderLoop();
 
