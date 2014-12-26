@@ -39,8 +39,9 @@ var initLevel = function(world) {
   Q.all([
     loadMesh('level/corridor.obj', 'level/corridor.obj.mtl', 20),
     loadMesh('interior/bed/Hospital_Bed.obj', 'interior/bed/Hospital_Bed.mtl', 5),
-    loadMesh('interior/Leather_Sofa/Leather_Sofa.obj', 'interior/Leather_Sofa/Leather_Sofa.mtl', 5)
-  ]).spread(function(level, bed, sofa) {
+    loadMesh('interior/Leather_Sofa/Leather_Sofa.obj', 'interior/Leather_Sofa/Leather_Sofa.mtl', 5),
+    loadMesh('interior/MedicalCabinet/MedicalCabinet.obj', 'interior/MedicalCabinet/MedicalCabinet.mtl', 0.15)
+  ]).spread(function(level, bed, sofa, cabinet) {
     // Add the level
     level.position.set(0, -20, 20);
     world.add(level);
@@ -76,7 +77,10 @@ var initLevel = function(world) {
       s.position.x -= 35 * i;
       world.add(s);
     }
-    window.sofa = sofa;
+
+    cabinet.position.set(-156, -20, -10);
+    cabinet.rotation.y = -Math.PI/2;
+    world.add(cabinet);
 
     // The game is ready!
     var loading = document.getElementById("loading");
