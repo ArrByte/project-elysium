@@ -16,6 +16,8 @@ var cam        = World.getCamera(),
     flashlight = new THREE.SpotLight(0xffffff, 5, 100),
     started    = false;
 
+var Bed;
+
 flashlight.position.set(0, 0, 1);
 flashlight.target = cam;
 flashlight.castShadow = true;
@@ -29,7 +31,7 @@ flashlight.shadowCameraFov = 30;
 cam.add(flashlight);
 World.add(cam);
 
-var level = loader.load('model2/corridor.obj', 'model2/corridor.obj.mtl', function(mesh) {
+loader.load('model2/corridor.obj', 'model2/corridor.obj.mtl', function(mesh) {
   mesh.scale.set(20, 20, 20);
   mesh.position.set(0, -20, 20);
   World.add(mesh);
@@ -38,7 +40,28 @@ var level = loader.load('model2/corridor.obj', 'model2/corridor.obj.mtl', functi
   document.getElementById("go").style.display = "block";
 });
 
-window.light = flashlight;
+loader.load('model2/interiors/bed/Hospital_Bed.obj', 'model2/interiors/bed/Hospital_Bed.mtl', function(mesh) {
+  mesh.scale.set(5, 5, 5);
+  Bed = mesh;
+  window.beds = [];
+  for(var i=0;i<4;i++) {
+    var bed = Bed.clone();
+    bed.position.set(60 + i*30, -20, -65);
+
+    World.add(bed);
+    window.beds.push(bed);
+  }
+
+  for(var i=0;i<4;i++) {
+    var bed = Bed.clone();
+    bed.rotation.set(0, -Math.PI, 0);
+    bed.position.set(60 + i*30, -20, 5);
+
+    World.add(bed);
+    window.beds.push(bed);
+  }
+
+});
 
 World.startRenderLoop();
 
@@ -57,10 +80,9 @@ document.querySelector("button").addEventListener('click', function() {
 })
 
 window.addEventListener('keydown', function(e) {
-  console.log(e.keyCode);
   if(e.keyCode === KEY_UP) cam.translateZ(-1);
   else if(e.keyCode === KEY_DOWN) cam.translateZ(1);
 
-  if(e.keyCode === KEY_LEFT) cam.rotation.y += 0.01;
-  else if(e.keyCode === KEY_RIGHT) cam.rotation.y -= 0.01;
+  if(e.keyCode === KEY_LEFT) cam.rotation.y += 0.03;
+  else if(e.keyCode === KEY_RIGHT) cam.rotation.y -= 0.03;
 });

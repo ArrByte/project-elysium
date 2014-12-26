@@ -21,3 +21,38 @@ Ks 0 0 0
 Ke 0 0 0
 illum 1
 map_Kd ceiling.jpg
+
+newmtl mat_4
+Kd 1 1 1
+Ks 0 0 0
+Ke 0 0 0
+illum 1
+map_Kd room-wall_.jpg
+
+newmtl mat_5
+Kd 1 1 1
+Ks 0 0 0
+Ke 0 0 0
+illum 1
+map_Kd room-floor.jpg
+
+newmtl mat_6
+Kd 1 1 1
+Ks 0 0 0
+Ke 0 0 0
+illum 1
+map_Kd concrete_wall2.jpg
+
+newmtl mat_7
+Kd 1 1 1
+Ks 0 0 0
+Ke 0 0 0
+illum 1
+map_Kd stairs.jpg
+
+newmtl mat_8
+Kd 1 1 1
+Ks 0 0 0
+Ke 0 0 0
+illum 1
+map_Kd wall3_red2.jpg
