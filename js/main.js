@@ -16,7 +16,11 @@ window.world = World;
 var cam        = World.getCamera(),
     started    = false;
 
-World.add(Player.init(cam));
+var player = Player.init(cam);
+World.add(player);
+player.position.set(136.71148327948706, 0, 57.30341321947831);
+player.rotation.y = 9.329999999999993;
+
 World.add(Skybox('skybox/','jpg'));
 Level.init(World);
 
@@ -37,9 +41,9 @@ document.querySelector("button").addEventListener('click', function() {
 })
 
 window.addEventListener('keydown', function(e) {
-  if(e.keyCode === KEY_UP) cam.translateZ(-1);
-  else if(e.keyCode === KEY_DOWN) cam.translateZ(1);
+  if(e.keyCode === KEY_UP) player.translateZ(-1);
+  else if(e.keyCode === KEY_DOWN) player.translateZ(1);
 
-  if(e.keyCode === KEY_LEFT) cam.rotation.y += 0.03;
-  else if(e.keyCode === KEY_RIGHT) cam.rotation.y -= 0.03;
+  if(e.keyCode === KEY_LEFT) player.rotation.y += 0.03;
+  else if(e.keyCode === KEY_RIGHT) player.rotation.y -= 0.03;
 });
