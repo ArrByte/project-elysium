@@ -56,3 +56,17 @@ Ks 0 0 0
 Ke 0 0 0
 illum 1
 map_Kd wall3_red2.jpg
+
+newmtl mat_9
+Kd 1 1 1
+Ks 0 0 0
+Ke 0 0 0
+illum 1
+map_Kd dirty_bricks1.jpg
+
+newmtl mat_10
+Kd 1 1 1
+Ks 0 0 0
+Ke 0 0 0
+illum 1
+map_Kd lab-floor2.jpg
