@@ -1,7 +1,8 @@
-var THREE = require('three'),
-    World = require('three-world'),
-    Level = require('./level'),
-    Player = require('./player');
+var THREE  = require('three'),
+    World  = require('three-world'),
+    Level  = require('./level'),
+    Player = require('./player'),
+    Skybox = require('./skybox');
 
 World.init({
   renderCallback: function() {
@@ -16,6 +17,7 @@ var cam        = World.getCamera(),
     started    = false;
 
 World.add(Player.init(cam));
+World.add(Skybox('skybox/','jpg'));
 Level.init(World);
 
 World.startRenderLoop();

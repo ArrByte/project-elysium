@@ -38,8 +38,9 @@ function fillOneRoom(bedMesh) {
 var initLevel = function(world) {
   Q.all([
     loadMesh('level/corridor.obj', 'level/corridor.obj.mtl', 20),
-    loadMesh('interior/bed/Hospital_Bed.obj', 'interior/bed/Hospital_Bed.mtl', 5)
-  ]).spread(function(level, bed) {
+    loadMesh('interior/bed/Hospital_Bed.obj', 'interior/bed/Hospital_Bed.mtl', 5),
+    loadMesh('interior/Leather_Sofa/Leather_Sofa.obj', 'interior/Leather_Sofa/Leather_Sofa.mtl', 5)
+  ]).spread(function(level, bed, sofa) {
     // Add the level
     level.position.set(0, -20, 20);
     world.add(level);
@@ -66,8 +67,16 @@ var initLevel = function(world) {
       world.add(r);
     }
 
-
-    window.room = room;
+    // Sofas in the waiting room
+    sofa.position.set(-200, -20, -445);
+    sofa.rotation.y = -Math.PI;
+    world.add(sofa);
+    for(var i=1;i<3;i++) {
+      var s = sofa.clone();
+      s.position.x -= 35 * i;
+      world.add(s);
+    }
+    window.sofa = sofa;
 
     // The game is ready!
     var loading = document.getElementById("loading");
