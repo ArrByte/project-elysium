@@ -11,9 +11,10 @@ World.init({
 
 window.world = World;
 
-var cam       = World.getCamera(),
-    loader    = new OBJMTLLoader(),
-    flashlight = new THREE.SpotLight(0xffffff, 5, 100);
+var cam        = World.getCamera(),
+    loader     = new OBJMTLLoader(),
+    flashlight = new THREE.SpotLight(0xffffff, 5, 100),
+    started    = false;
 
 flashlight.position.set(0, 0, 1);
 flashlight.target = cam;
@@ -28,7 +29,7 @@ flashlight.shadowCameraFov = 30;
 cam.add(flashlight);
 World.add(cam);
 
-var level = loader.load('model/test.obj', 'model/test.obj.mtl', function(mesh) {
+var level = loader.load('model2/corridor.obj', 'model2/corridor.obj.mtl', function(mesh) {
   mesh.scale.set(20, 20, 20);
   mesh.position.set(0, -20, 20);
   World.add(mesh);
@@ -49,6 +50,10 @@ var KEY_UP    = 38,
 document.querySelector("button").addEventListener('click', function() {
   document.querySelector("canvas").style.display = "block";
   document.body.removeChild(document.getElementById("menu"));
+  started = true;
+  var bgAudio = document.getElementById("audio_bg");
+  bgAudio.volume = 0.5;
+  bgAudio.play();
 })
 
 window.addEventListener('keydown', function(e) {
