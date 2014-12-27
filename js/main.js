@@ -49,8 +49,20 @@ Level.init(World, root);
 World.startRenderLoop();
 
 document.querySelector("button").addEventListener('click', function() {
-  document.querySelector("canvas").style.display = "block";
+  var canvas = document.querySelector("canvas");
+  canvas.style.display = "block";
   document.body.removeChild(document.getElementById("menu"));
+
+  if (canvas.requestFullscreen) {
+    canvas.requestFullscreen();
+  } else if (canvas.msRequestFullscreen) {
+    canvas.msRequestFullscreen();
+  } else if (canvas.mozRequestFullScreen) {
+    canvas.mozRequestFullScreen();
+  } else if (canvas.webkitRequestFullscreen) {
+    canvas.webkitRequestFullscreen();
+  }
+
   started = true;
   var bgAudio = document.getElementById("audio_bg");
   bgAudio.volume = 0.5;
