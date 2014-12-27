@@ -44,9 +44,7 @@ var initLevel = function(world, root) {
   ]).spread(function(level, bed, sofa, cabinet) {
     // Add the level
     level.position.set(0, -20, 20);
-//    world.add(level);
     root.add(level);
-    world.add(root);
 
     // Add the beds for the rooms on the right hand side
     var room = fillOneRoom(bed);
@@ -73,16 +71,18 @@ var initLevel = function(world, root) {
     // Sofas in the waiting room
     sofa.position.set(-200, -20, -445);
     sofa.rotation.y = -Math.PI;
-    world.add(sofa);
+    root.add(sofa);
     for(var i=1;i<3;i++) {
       var s = sofa.clone();
       s.position.x -= 35 * i;
-      world.add(s);
+      root.add(s);
     }
 
     cabinet.position.set(-156, -20, -10);
     cabinet.rotation.y = -Math.PI/2;
-    world.add(cabinet);
+    root.add(cabinet);
+
+    world.add(root);
 
     // The game is ready!
     var loading = document.getElementById("loading");

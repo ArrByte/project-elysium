@@ -1,13 +1,27 @@
-var THREE  = require('three'),
-    World  = require('three-world'),
-    Level  = require('./level'),
-    Player = require('./player'),
-    Skybox = require('./skybox');
+var THREE    = require('three'),
+    World    = require('three-world'),
+    Level    = require('./level'),
+    Player   = require('./player'),
+    Skybox   = require('./skybox'),
+    Controls = require('./controls');
+
+var KEY_UP    = 38,
+    KEY_LEFT  = 37,
+    KEY_RIGHT = 39,
+    KEY_DOWN  = 40;
 
 World.init({
   renderCallback: function() {
-    if(started) Player.update(player, root);
-    //cam.translateZ(-0.1);
+    if(started) {
+      if(Controls.isKeyPressed(KEY_UP)) player.translateZ(-1);
+      else if(Controls.isKeyPressed(KEY_DOWN)) player.translateZ(1);
+
+      if(Controls.isKeyPressed(KEY_LEFT)) player.rotation.y += 0.03;
+      else if(Controls.isKeyPressed(KEY_RIGHT)) player.rotation.y -= 0.03;
+
+      player.position.y -= 1;
+      Player.update(player, root);
+    }
   },
   ambientLightColor: 0x00001a
 });
@@ -24,15 +38,12 @@ World.add(player);
 player.position.set(136.71148327948706, 0, 57.30341321947831);
 player.rotation.y = 9.329999999999993;
 
+Controls.init();
+
 World.add(Skybox('skybox/','jpg'));
 Level.init(World, root);
 
 World.startRenderLoop();
-
-var KEY_UP    = 38,
-    KEY_LEFT  = 37,
-    KEY_RIGHT = 39,
-    KEY_DOWN  = 40;
 
 document.querySelector("button").addEventListener('click', function() {
   document.querySelector("canvas").style.display = "block";
@@ -41,12 +52,4 @@ document.querySelector("button").addEventListener('click', function() {
   var bgAudio = document.getElementById("audio_bg");
   bgAudio.volume = 0.5;
   bgAudio.play();
-})
-
-window.addEventListener('keydown', function(e) {
-  if(e.keyCode === KEY_UP) player.translateZ(-1);
-  else if(e.keyCode === KEY_DOWN) player.translateZ(1);
-
-  if(e.keyCode === KEY_LEFT) player.rotation.y += 0.03;
-  else if(e.keyCode === KEY_RIGHT) player.rotation.y -= 0.03;
 });
