@@ -5,10 +5,10 @@ var Player = (function(){
 
   var collisionSettings = [
     { vector: new THREE.Vector3( 0, -1,  0), yOffset:   0, distance: 20 },
-    { vector: new THREE.Vector3(-1,  0,  0), yOffset: -20, distance:  5 },
-    { vector: new THREE.Vector3( 1,  0,  0), yOffset: -20, distance:  5 },
-    { vector: new THREE.Vector3( 0,  0, -1), yOffset: -10, distance: 5 },
-    { vector: new THREE.Vector3( 0,  0,  1), yOffset: -10, distance: 5 }
+    { vector: new THREE.Vector3(-1,  0,  0), yOffset: -12, distance:  5 },
+    { vector: new THREE.Vector3( 1,  0,  0), yOffset: -12, distance:  5 },
+    { vector: new THREE.Vector3( 0,  0, -1), yOffset: -12, distance:  5 },
+    { vector: new THREE.Vector3( 0,  0,  1), yOffset: -12, distance:  5 }
   ];
 
   instance.init = function(cam, flashLightOpts) {
@@ -25,13 +25,11 @@ var Player = (function(){
     flashlight.shadowCameraFov = 30;
 
     cam.add(flashlight);
-
     player = cam;
+
     for(var i=0; i<collisionSettings.length; i++) {
       var setting = collisionSettings[i];
-      var origin  = player.position;
-      origin.y    = setting.yOffset;
-      var caster = new THREE.Raycaster(origin, setting.vector, 0, setting.distance);
+      var caster = new THREE.Raycaster(new THREE.Vector3(0, 0, 0), setting.vector, 0, setting.distance);
       casters.push(caster);
     }
 
@@ -40,6 +38,8 @@ var Player = (function(){
 
   instance.update = function(player, object) {
     for(var i=0; i<casters.length; i++) {
+      casters[i].ray.origin = player.position.clone();
+      casters[i].ray.origin.y += collisionSettings[i].yOffset;
       var intersecting = casters[i].intersectObject(object, true);
       if(intersecting.length !== 0) {
         player.position.sub(casters[i].ray.direction);

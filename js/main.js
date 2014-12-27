@@ -8,7 +8,8 @@ var THREE    = require('three'),
 var KEY_UP    = 38,
     KEY_LEFT  = 37,
     KEY_RIGHT = 39,
-    KEY_DOWN  = 40;
+    KEY_DOWN  = 40,
+    KEY_SPACE = 32;
 
 World.init({
   renderCallback: function() {
@@ -18,6 +19,8 @@ World.init({
 
       if(Controls.isKeyPressed(KEY_LEFT)) player.rotation.y += 0.03;
       else if(Controls.isKeyPressed(KEY_RIGHT)) player.rotation.y -= 0.03;
+
+      if(Controls.isKeyPressed(KEY_SPACE)) player.position.y += 2;
 
       player.position.y -= 1;
       Player.update(player, root);

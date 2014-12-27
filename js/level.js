@@ -28,7 +28,6 @@ function fillOneRoom(bedMesh) {
     var bed = bedMesh.clone();
     bed.rotation.set(0, -Math.PI, 0);
     bed.position.set(60 + i*30, -20, 5);
-
     room.add(bed);
   }
 
@@ -49,23 +48,23 @@ var initLevel = function(world, root) {
     // Add the beds for the rooms on the right hand side
     var room = fillOneRoom(bed);
     room.position.z = 120;
-    world.add(room);
+    root.add(room);
 
     for(var i=1;i<6;i++) {
       var r = room.clone();
       r.position.z -= 120 * i;
-      world.add(r);
+      root.add(r);
     }
 
     // Add the beds for the rooms on the left hand side
     var room2 = room.clone();
     room2.position.set(-205, 0, 140);
-    world.add(room2);
+    root.add(room2);
 
     for(var i=1;i<6;i++) {
       var r = room2.clone();
       r.position.z -= 120 * i;
-      world.add(r);
+      root.add(r);
     }
 
     // Sofas in the waiting room
