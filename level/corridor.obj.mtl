@@ -70,3 +70,25 @@ Ks 0 0 0
 Ke 0 0 0
 illum 1
 map_Kd lab-floor2.jpg
+
+newmtl mat_11
+Kd 1 1 1
+Ks 0 0 0
+Ke 0 0 0
+illum 1
+map_Kd carpet.jpg
+
+newmtl mat_12
+Kd 1 1 1
+Ks 0 0 0
+Ke 0 0 0
+illum 1
+map_Kd concrete_wall.jpg
+
+newmtl mat_13
+Kd 1 1 1
+Ks 0 0 0
+Ke 0 0 0
+illum 1
+map_Kd lab-floor.jpg
+

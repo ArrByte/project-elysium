@@ -83,6 +83,16 @@ var initLevel = function(world, root) {
 
     world.add(root);
 
+    // Adding some splatter :D
+    var splat = new THREE.Mesh(new THREE.BoxGeometry(10, 10, 0.1), new THREE.MeshPhongMaterial({
+      map: THREE.ImageUtils.loadTexture('level/splat1.png'),
+      transparent: true
+    }));
+    splat.position.set(-179.955, 0, -470);
+    splat.rotation.y = -Math.PI / 2;
+    splat.scale.set(4, 4, 1);
+    world.add(splat);
+
     // The game is ready!
     var loading = document.getElementById("loading");
     loading.parentNode.removeChild(loading);
