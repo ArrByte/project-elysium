@@ -6,6 +6,7 @@ var THREE  = require('three'),
 
 World.init({
   renderCallback: function() {
+    if(started) Player.update(player, root);
     //cam.translateZ(-0.1);
   },
   ambientLightColor: 0x00001a
@@ -13,16 +14,18 @@ World.init({
 
 window.world = World;
 
-var cam        = World.getCamera(),
-    started    = false;
+var cam     = World.getCamera(),
+    started = false,
+    root    = new THREE.Object3D();
 
 var player = Player.init(cam);
 World.add(player);
+
 player.position.set(136.71148327948706, 0, 57.30341321947831);
 player.rotation.y = 9.329999999999993;
 
 World.add(Skybox('skybox/','jpg'));
-Level.init(World);
+Level.init(World, root);
 
 World.startRenderLoop();
 

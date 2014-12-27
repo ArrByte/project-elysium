@@ -35,7 +35,7 @@ function fillOneRoom(bedMesh) {
   return room;
 }
 
-var initLevel = function(world) {
+var initLevel = function(world, root) {
   Q.all([
     loadMesh('level/corridor.obj', 'level/corridor.obj.mtl', 20),
     loadMesh('interior/bed/Hospital_Bed.obj', 'interior/bed/Hospital_Bed.mtl', 5),
@@ -44,7 +44,9 @@ var initLevel = function(world) {
   ]).spread(function(level, bed, sofa, cabinet) {
     // Add the level
     level.position.set(0, -20, 20);
-    world.add(level);
+//    world.add(level);
+    root.add(level);
+    world.add(root);
 
     // Add the beds for the rooms on the right hand side
     var room = fillOneRoom(bed);
