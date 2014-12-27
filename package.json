@@ -11,11 +11,12 @@
   "devDependencies": {
     "autoprefixer": "^4.0.0",
     "browserify": "^6.3.2",
+    "uglify-js": "^2.4.16",
     "watchify": "^2.1.1"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "autoprefixer -o style.css stylesheet.css & browserify js/main.js > index.js",
+    "build": "autoprefixer -o style.css stylesheet.css & browserify js/main.js | uglifyjs -mc > index.js",
     "dev": "watchify js/main.js -o index.js -dv"
   },
   "author": "",
