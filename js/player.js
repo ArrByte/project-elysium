@@ -25,7 +25,12 @@ var Player = (function(){
     flashlight.shadowCameraFov = 30;
 
     cam.add(flashlight);
-    player = cam;
+    cam.position.set(0, 0, 0);
+    var player = new THREE.Object3D();
+    player.position = cam.position.clone();
+
+    player.cam = cam;
+    player.add(cam);
 
     for(var i=0; i<collisionSettings.length; i++) {
       var setting = collisionSettings[i];

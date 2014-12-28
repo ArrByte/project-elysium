@@ -28,6 +28,11 @@ World.init({
         player.jumping--;
       }
       player.position.y -= 1;
+      var mouseMove = Controls.getMouseMovement();
+
+      player.cam.rotation.x = mouseMove.dy / 120;
+      player.rotation.y = mouseMove.dx / 120;
+
       Player.update(player, root);
     }
   },
@@ -41,6 +46,7 @@ var cam     = World.getCamera(),
     root    = new THREE.Object3D();
 
 var player = Player.init(cam);
+player.rotationOrder = 'YXZ';
 World.add(player);
 
 player.position.set(136.71148327948706, 0, 57.30341321947831);
