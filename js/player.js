@@ -47,6 +47,9 @@ var Player = (function(){
       casters[i].ray.origin.y += collisionSettings[i].yOffset;
       var intersecting = casters[i].intersectObject(object, true);
       if(intersecting.length !== 0) {
+        if(intersecting[0].object.parent.actionable) {
+          player.actionAvailable = true;
+        }
         player.position.sub(casters[i].ray.direction);
       }
     }

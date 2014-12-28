@@ -80,6 +80,7 @@ var initLevel = function(world, root) {
 
     cabinet.position.set(-156, -20, -10);
     cabinet.rotation.y = -Math.PI/2;
+    cabinet.actionable = true;
     root.add(cabinet);
 
     labBed.position.set(-265, -73.2, -650);

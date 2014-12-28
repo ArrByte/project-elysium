@@ -35,13 +35,7 @@ World.init({
         player.jumping--;
       }
       player.position.y -= 1;
-/*      var mouseMove = Controls.getMouseMovement();
 
-      player.rotation.y     -= mouseMove.dx * 0.002;
-      player.cam.rotation.x -= mouseMove.dy * 0.002;
-
-      player.cam.rotation.x = Math.max( -Math.PI/2, Math.min( Math.PI/2, player.cam.rotation.x ) );
-*/
       Player.update(player, root);
     }
   },
