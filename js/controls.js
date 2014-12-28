@@ -12,11 +12,11 @@ module.exports = (function() {
     window.addEventListener('keyup', function(e) {
       activeKeys[e.keyCode] = false;
     });
-
+/*
     window.addEventListener('mousemove', function(e) {
-      mouseState.dx = center.x - e.clientX,
-      mouseState.dy = center.y - e.clientY;
-    });
+      mouseState.dx = event.movementX || event.mozMovementX || event.webkitMovementX || 0;
+		  mouseState.dy = event.movementY || event.mozMovementY || event.webkitMovementY || 0;
+    });*/
   };
 
   instance.isKeyPressed = function(keyCode) {

@@ -28,11 +28,13 @@ World.init({
         player.jumping--;
       }
       player.position.y -= 1;
-      var mouseMove = Controls.getMouseMovement();
+/*      var mouseMove = Controls.getMouseMovement();
 
-      player.cam.rotation.x = mouseMove.dy / 120;
-      player.rotation.y = mouseMove.dx / 120;
+      player.rotation.y     -= mouseMove.dx * 0.002;
+      player.cam.rotation.x -= mouseMove.dy * 0.002;
 
+      player.cam.rotation.x = Math.max( -Math.PI/2, Math.min( Math.PI/2, player.cam.rotation.x ) );
+*/
       Player.update(player, root);
     }
   },
@@ -74,8 +76,24 @@ document.querySelector("button").addEventListener('click', function() {
     canvas.webkitRequestFullscreen();
   }
 
+  canvas.requestPointerLock = canvas.requestPointerLock ||
+                              canvas.mozRequestPointerLock ||
+                              canvas.webkitRequestPointerLock;
+
+  canvas.requestPointerLock()
+
   started = true;
   var bgAudio = document.getElementById("audio_bg");
   bgAudio.volume = 0.5;
   bgAudio.play();
+});
+
+window.addEventListener('mousemove', function(e) {
+  var dx = event.movementX || event.mozMovementX || event.webkitMovementX || 0,
+      dy = event.movementY || event.mozMovementY || event.webkitMovementY || 0;
+
+  player.rotation.y     -= dx * 0.002;
+  player.cam.rotation.x -= dy * 0.002;
+
+  player.cam.rotation.x = Math.max( -Math.PI/2, Math.min( Math.PI/2, player.cam.rotation.x ) );
 });
