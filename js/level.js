@@ -39,8 +39,9 @@ var initLevel = function(world, root) {
     loadMesh('level/corridor.obj', 'level/corridor.obj.mtl', 20),
     loadMesh('interior/bed/Hospital_Bed.obj', 'interior/bed/Hospital_Bed.mtl', 5),
     loadMesh('interior/Leather_Sofa/Leather_Sofa.obj', 'interior/Leather_Sofa/Leather_Sofa.mtl', 5),
-    loadMesh('interior/MedicalCabinet/MedicalCabinet.obj', 'interior/MedicalCabinet/MedicalCabinet.mtl', 0.15)
-  ]).spread(function(level, bed, sofa, cabinet) {
+    loadMesh('interior/MedicalCabinet/MedicalCabinet.obj', 'interior/MedicalCabinet/MedicalCabinet.mtl', 0.15),
+    loadMesh('interior/lab-bed/lab-bed.obj', 'interior/lab-bed/lab-bed.mtl', 0.15)
+  ]).spread(function(level, bed, sofa, cabinet, labBed) {
     // Add the level
     level.position.set(0, -20, 20);
     root.add(level);
@@ -80,6 +81,10 @@ var initLevel = function(world, root) {
     cabinet.position.set(-156, -20, -10);
     cabinet.rotation.y = -Math.PI/2;
     root.add(cabinet);
+
+    labBed.position.set(-265, -73.2, -650);
+    labBed.rotation.y = 2.6;
+    root.add(labBed);
 
     world.add(root);
 
