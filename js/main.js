@@ -9,13 +9,20 @@ var KEY_UP    = 38,
     KEY_LEFT  = 37,
     KEY_RIGHT = 39,
     KEY_DOWN  = 40,
-    KEY_SPACE = 32;
+    KEY_SPACE = 32,
+    KEY_W     = 87,
+    KEY_A     = 65,
+    KEY_S     = 83,
+    KEY_D     = 68;
 
 World.init({
   renderCallback: function() {
     if(started) {
-      if(Controls.isKeyPressed(KEY_UP)) player.translateZ(-1);
-      else if(Controls.isKeyPressed(KEY_DOWN)) player.translateZ(1);
+      if(Controls.isKeyPressed(KEY_UP) || Controls.isKeyPressed(KEY_W)) player.translateZ(-1);
+      else if(Controls.isKeyPressed(KEY_DOWN) || Controls.isKeyPressed(KEY_S)) player.translateZ(1);
+
+      if(Controls.isKeyPressed(KEY_A) || Controls.isKeyPressed(KEY_A)) player.translateX(-1);
+      else if(Controls.isKeyPressed(KEY_D) || Controls.isKeyPressed(KEY_D)) player.translateX(1);
 
       if(Controls.isKeyPressed(KEY_LEFT)) player.rotation.y += 0.03;
       else if(Controls.isKeyPressed(KEY_RIGHT)) player.rotation.y -= 0.03;
