@@ -80,7 +80,24 @@ var initLevel = function(world, root) {
 
     cabinet.position.set(-156, -20, -10);
     cabinet.rotation.y = -Math.PI/2;
-    cabinet.actionable = true;
+    cabinet.action = {
+      activate: function(player) {
+        var file = new THREE.Sprite(new THREE.SpriteMaterial({
+          map: THREE.ImageUtils.loadTexture('sprites/file.png')
+        }));
+        var playerPos = player.position;
+        file.rotation.set(player.rotation.x, player.rotation.y, player.position.z);
+        file.position.set(playerPos.x, playerPos.y - 0.1, playerPos.z);
+        file.translateZ(-1.2);
+        file.scale.set(1, 1, 1);
+        window.currentItem = file;
+        world.add(file);
+      },
+      deactivate: function() {
+        world.remove(window.currentItem);
+        delete window.currentItem; //.dispose();
+      }
+    };
     root.add(cabinet);
 
     labBed.position.set(-265, -73.2, -650);

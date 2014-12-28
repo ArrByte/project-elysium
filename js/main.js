@@ -13,11 +13,30 @@ var KEY_UP    = 38,
     KEY_W     = 87,
     KEY_A     = 65,
     KEY_S     = 83,
-    KEY_D     = 68;
+    KEY_D     = 68,
+    KEY_E     = 69;
 
 World.init({
   renderCallback: function() {
     if(started) {
+
+      if(player.actionAvailable && Controls.isKeyPressed(KEY_E) && !player.inAction) {
+        player.action.activate(player);
+        player.inAction = true;
+        Controls.resetKey(KEY_E);
+        return;
+      }
+
+      if(player.inAction) {
+        if(Controls.isKeyPressed(KEY_E)) {
+          player.action.deactivate(player);
+          player.actionAvailable = false;
+          player.inAction = false;
+          Controls.resetKey(KEY_E);
+        }
+        return;
+      }
+
       if(Controls.isKeyPressed(KEY_UP) || Controls.isKeyPressed(KEY_W)) player.translateZ(-1);
       else if(Controls.isKeyPressed(KEY_DOWN) || Controls.isKeyPressed(KEY_S)) player.translateZ(1);
 
