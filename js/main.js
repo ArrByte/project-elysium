@@ -20,8 +20,13 @@ World.init({
       if(Controls.isKeyPressed(KEY_LEFT)) player.rotation.y += 0.03;
       else if(Controls.isKeyPressed(KEY_RIGHT)) player.rotation.y -= 0.03;
 
-      if(Controls.isKeyPressed(KEY_SPACE)) player.position.y += 2;
-
+      if(Controls.isKeyPressed(KEY_SPACE) && !player.jumping) {
+        player.position.y += 2;
+        player.jumping = 5;
+      } else if(player.jumping > 0) {
+        player.position.y += 2;
+        player.jumping--;
+      }
       player.position.y -= 1;
       Player.update(player, root);
     }
