@@ -46,12 +46,20 @@ World.init({
       if(Controls.isKeyPressed(KEY_LEFT)) player.rotation.y += 0.03;
       else if(Controls.isKeyPressed(KEY_RIGHT)) player.rotation.y -= 0.03;
 
-      if(Controls.isKeyPressed(KEY_SPACE) && !player.jumping) {
+      if(!player.jumping && Controls.isKeyPressed(KEY_SPACE)) {
         player.position.y += 2;
         player.jumping = 5;
-      } else if(player.jumping > 0) {
+        Controls.resetKey(KEY_SPACE);
+        console.log("Jump triggered");
+      } else if(!Controls.isKeyPressed(KEY_SPACE) && player.jumping == 1) {
+        player.jumping = 0;
+      }
+
+      if(player.jumping > 1) {
         player.position.y += 2;
         player.jumping--;
+        Controls.resetKey(KEY_SPACE);
+        console.log("Jump happening");
       }
       player.position.y -= 1;
 
