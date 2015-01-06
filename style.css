@@ -44,6 +44,7 @@ h1 {
   padding-top: 1em;
   -webkit-animation: glitch 2.5s linear infinite;
           animation: glitch 2.5s linear infinite;
+  letter-spacing: 0.025em;
 }
 
 h2 {
