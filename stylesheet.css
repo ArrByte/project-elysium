@@ -159,3 +159,11 @@ button:active {
 canvas {
   display: none;
 }
+
+
+/* The website link for ArrByte */
+a#website {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
